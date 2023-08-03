@@ -2,6 +2,8 @@
 
 Runs a script adapted from this pennylane tutorial: https://pennylane.ai/qml/demos/tutorial_quantum_transfer_learning
 
+Test data can be downloaded here: https://download.pytorch.org/tutorial/hymenoptera_data.zip
+
 The script has been adapted for Frontier and made to distribute over multiple GPUs by [@Sam-Bieberich].
 
 Eventually will place install instructions for the PyTorch environment here.
