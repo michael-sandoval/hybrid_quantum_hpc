@@ -17,3 +17,11 @@ But in the meantime, these are the relevant specs:
 ```
 sbatch -S0 --export=NONE submit_qml_gpu.sl
 ```
+
+## Different Codes
+
+* `cnn_qml_distributed.py`: The original (outdated) distributed code, which utilizes a PyTorch spawner to spawn threads across a user-provided number of GPUs (does NOT work with multiple nodes)
+
+* `cnn_qml_distributed_mpi_1GpuPerTask.py`: The updated distributed code which utilizes mpi4py and `srun` to spawn threads (works across multiple nodes). Meant to be run with 1 GPU per task like so (e.g., for 3 GPUs): `srun -n3 -c7 --gpus-per-task=1 --gpu-bind=closest python3 -W ignore -u script.py`
+
+* `cnn_qml_distributed_torchrun_cpu.py`: Bonus script if ever need to run across multiple CPUs (no GPUs) of a system using torchrun (mpi4py syntax provided in comments). Meant to be run like so (e.g., for 3 threads): `torchrun --standalone --nnodes=1 --nproc_per_node=3 script.py`
