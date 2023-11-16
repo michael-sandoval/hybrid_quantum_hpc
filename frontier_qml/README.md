@@ -24,6 +24,6 @@ sbatch --export=NONE submit_3gpu.sl
 
 * `cnn_qml_distributed_mpi_1GpuPerTask.py`: The updated distributed code which utilizes mpi4py and `srun` to spawn threads (works across multiple nodes). Meant to be run with 1 GPU per task like so (e.g., for 3 GPUs): `srun -n3 -c7 --gpus-per-task=1 --gpu-bind=closest python3 -W ignore -u script.py` . Relevant batch script is `submit_3gpu.sl`
 
-> WARNING: For some reason multi-node only works with an odd number of GPUs with my code?? (Even numbers work fine on 1 node with the same code)
+> WARNING: For some reason multi-node only works with an odd number of GPUs with my code (and even some odd numbers don't work)?? (Even numbers work fine on 1 node with the same code). However, when using this code w/ CPUs, works fine (both even/odd). So, GPU communication issue it seems.
 
 * `cnn_qml_distributed_torchrun_cpu.py`: Bonus script if ever need to run across multiple CPUs (no GPUs) of a system using torchrun (mpi4py syntax provided in comments). Meant to be run like so (e.g., for 3 threads): `torchrun --standalone --nnodes=1 --nproc_per_node=3 script.py`
